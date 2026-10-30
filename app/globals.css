@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-taskr-blue: #0073ea;
+  --color-taskr-blue-hover: #0060b9;
+  --color-taskr-blue-light: #e5f0ff;
+  --color-taskr-purple: #a25ddc;
+  --color-taskr-purple-light: #f2e8fa;
+  --color-taskr-done: #00c875;
+  --color-taskr-working: #fdab3d;
+  --color-taskr-stuck: #e2445c;
+  --color-taskr-neutral: #c4c4c4;
+  --color-taskr-dark: #0b0e17;
+  --color-taskr-surface: #181d2d;
+  --color-taskr-card: #21273d;
+
+  --color-glass-light: rgba(255, 255, 255, 0.07);
+  --color-glass-card: rgba(24, 29, 45, 0.65);
+  --color-glass-border: rgba(255, 255, 255, 0.12);
+  --color-glass-glow: rgba(0, 115, 234, 0.25);
+
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --shadow-glow: 0 0 30px -5px rgba(0, 115, 234, 0.3);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--color-taskr-dark);
+    color: #f1f5f9;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility glass-panel {
+  background-color: var(--color-glass-card);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: var(--shadow-glass);
+  border-radius: 1rem;
+}
+
+@utility glass-card {
+  background-color: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 300ms ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+@utility glass-input {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  backdrop-filter: blur(12px);
+  transition: all 200ms ease;
+
+  &::placeholder {
+    color: #94a3b8;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-taskr-blue);
+    box-shadow: 0 0 0 1px var(--color-taskr-blue);
+  }
+}
+
+@utility glass-button-primary {
+  background-color: var(--color-taskr-blue);
+  color: #ffffff;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  transition: all 200ms ease;
+  box-shadow: 0 10px 15px -3px rgba(0, 115, 234, 0.25);
+
+  &:hover {
+    background-color: var(--color-taskr-blue-hover);
+    box-shadow: 0 10px 20px -3px rgba(0, 115, 234, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(11, 14, 23, 0.8);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
